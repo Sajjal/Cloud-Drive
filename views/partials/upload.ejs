@@ -1,0 +1,18 @@
+<script src="/js/verifyFileType.min.js"></script>
+<script src="/js/verifyFileSize.min.js"></script>
+<script src="/js/filepond.min.js"></script>
+
+<div id="directorySelector"></div>
+
+<input
+  type="text"
+  name="newDirectory"
+  id="newDirectory"
+  style="display: none"
+  placeholder="New Directory Name..."
+  onfocusout="newDir()"
+/>
+
+<div class="file-border file-upload">
+  <input type="file" name="filepond" required multiple />
+</div>

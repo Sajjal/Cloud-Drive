@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>S & D Cloud Drive</title>
+    <link rel="shortcut icon" href="/images/icon.png" />
+    <link rel="stylesheet" href="/css/filepond.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>S & D Cloud Drive</h1>
+      <div id="navbar" style="display: none"><%- include('./partials/navbar')%></div>
+      <div class="notification" id="message"></div>
+      <div id="login" class="txtbox" style="display: none"><%- include('./partials/login')%></div>
+      <div id="credentialsPage" class="txtbox" style="display: none"><%- include('./partials/credentials')%></div>
+      <div id="tokenPage" class="txtbox" style="display: none"><%- include('./partials/token')%></div>
+      <div id="dashboard" style="display: none"><%- include('./partials/dashboard')%></div>
+      <div id="upload" class="txtbox" style="display: none"><%- include('./partials/upload')%></div>
+      <div id="modal" class="modal" style="display: none"><%- include('./partials/modal')%></div>
+      <div class="footer">S & D Cloud Drive | github: @Sajjal</div>
+    </div>
+    <script defer src="/js/ejs.min.js"></script>
+    <script defer src="/js/viewController.js"></script>
+  </body>
+</html>
