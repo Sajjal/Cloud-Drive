@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
-const expressip = require("express-ip");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -16,7 +15,6 @@ const mainRouter = require("./routes/mainRouter");
 //MiddleWares
 app.set("trust proxy", 1);
 app.use(cookieParser());
-app.use(expressip().getIpInfoMiddleware);
 app.use(express.json());
 app.use("/", mainRouter);
 app.use("/drive", uploadRoute);

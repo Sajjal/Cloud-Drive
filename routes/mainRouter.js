@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const fsExtra = require("fs-extra");
 const rateLimit = require("express-rate-limit");
+const axios = require("axios");
 
 const db = require("grantha");
 const dbToken = process.env.GRANTHA;
@@ -47,13 +48,14 @@ router.post("/search", verifyLogin, verifyCredentials, async (req, res) => {
 });
 
 router.post("/login", createAccountLimiter, async (req, res) => {
-  //const query = { token: dbToken, collection: "accessTokens", data: { token: req.body.accessCode } };
-  //const accessCode = await db.searchData(query);
-  //if (accessCode.length < 1) return res.status(400).json({ Error: "Invalid Access Code" });
+  //const response = await axios.post(`${process.env.ACCESS_URL}`, { service: "personaldrive", uuid: req.body.accessCode });
+  //if (!response.data.status) return res.status(400).json({ Error: "Invalid Access Code" });
+
   if (req.body.accessCode != process.env.ACCESS_CODE) return res.status(400).json({ Error: "Invalid Access Code" });
+  const ipInfo = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   const accessToken = jwt.sign({ id: "mrsajjal" }, process.env.TOKEN_SECRET, { expiresIn: "960s" }); //16 Minutes
-  const record = { token: dbToken, collection: "userInfo", data: { user: "mrsajjal", login: Date.now(), location: req.ipInfo } };
+  const record = { token: dbToken, collection: "userInfo", data: { user: "mrsajjal", login: Date.now(), location: ipInfo } };
 
   //Remove everything from temp directory (if any)
   fsExtra.emptyDirSync("public/temp");
